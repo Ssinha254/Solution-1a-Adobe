@@ -1,0 +1,240 @@
+{
+  "title": "Foundation Level Extensions  ",
+  "outline": [
+    {
+      "level": "H2",
+      "text": "Foundation Level Extensions ",
+      "page": 1
+    },
+    {
+      "level": "H2",
+      "text": "Version 1.0 ",
+      "page": 1
+    },
+    {
+      "level": "H2",
+      "text": "Copyright Notice ",
+      "page": 1
+    },
+    {
+      "level": "H2",
+      "text": "International ",
+      "page": 2
+    },
+    {
+      "level": "H2",
+      "text": "\u2013 ",
+      "page": 2
+    },
+    {
+      "level": "H2",
+      "text": "Revision History ",
+      "page": 3
+    },
+    {
+      "level": "H2",
+      "text": "Version Date Remarks ",
+      "page": 3
+    },
+    {
+      "level": "H2",
+      "text": "0.1 18 JUNE 2013 Initial version ",
+      "page": 3
+    },
+    {
+      "level": "H2",
+      "text": "0.2 23 JULY 2013 WG reviewed and confirmed ",
+      "page": 3
+    },
+    {
+      "level": "H2",
+      "text": "0.3 6 NOV 2013 amended population and diagram ",
+      "page": 3
+    },
+    {
+      "level": "H2",
+      "text": "0.7 11 DEC 2013 Amended Business Outcomes and Chapters matching ",
+      "page": 3
+    },
+    {
+      "level": "H2",
+      "text": "0.8 20 DEC 2013 Working group updates on 0.7 ",
+      "page": 3
+    },
+    {
+      "level": "H2",
+      "text": "Table of Contents ",
+      "page": 4
+    },
+    {
+      "level": "H2",
+      "text": "Acknowledgements ",
+      "page": 5
+    },
+    {
+      "level": "H2",
+      "text": "Authors: Rex Black, Anders Claesson, Gerry Coleman, Bertrand Cornanguer, Istvan Forgacs, Alon ",
+      "page": 5
+    },
+    {
+      "level": "H2",
+      "text": "Linetzki, Tilo Linz, Leo van der Aalst, Marie Walsh, and Stephan Weber. ",
+      "page": 5
+    },
+    {
+      "level": "H2",
+      "text": "Internal Reviewers: Mette Bruhn-Pedersen, Christopher Clements, Alessandro Collino, Debra ",
+      "page": 5
+    },
+    {
+      "level": "H2",
+      "text": "Friedenberg, Kari Kakkonen, Beata Karpinska, Sammy Kolluru, Jennifer Leger, Thomas Mueller, Tuula ",
+      "page": 5
+    },
+    {
+      "level": "H2",
+      "text": "P\u00e4\u00e4kk\u00f6nen, Meile Posthuma, Gabor Puhalla, Lloyd Roden, Marko Rytk\u00f6nen, Monika Stoecklein-Olsen, ",
+      "page": 5
+    },
+    {
+      "level": "H2",
+      "text": "Robert Treffny, Chris Van Bael, and Erik van Veenendaal. ",
+      "page": 5
+    },
+    {
+      "level": "H2",
+      "text": "Xu, Ester Zabar, Wenqiang Zheng, Peter Zimmerer, Stevan Zivanovic, and Terry Zuo. ",
+      "page": 5
+    },
+    {
+      "level": "H2",
+      "text": "2014. ",
+      "page": 5
+    },
+    {
+      "level": "H2",
+      "text": "extension syllabi. ",
+      "page": 6
+    },
+    {
+      "level": "H2",
+      "text": "updated document will be available on the ISTQB website. ",
+      "page": 6
+    },
+    {
+      "level": "H2",
+      "text": "that is beyond the scope of this document. ",
+      "page": 6
+    },
+    {
+      "level": "H2",
+      "text": "2.1 Intended Audience ",
+      "page": 7
+    },
+    {
+      "level": "H2",
+      "text": "environment. ",
+      "page": 7
+    },
+    {
+      "level": "H2",
+      "text": "2.4 Entry Requirements ",
+      "page": 8
+    },
+    {
+      "level": "H2",
+      "text": "The syllabi must be taught in the following minimum number of days: ",
+      "page": 8
+    },
+    {
+      "level": "H2",
+      "text": "Syllabus Days ",
+      "page": 8
+    },
+    {
+      "level": "H2",
+      "text": "2.6 Keeping It Current ",
+      "page": 9
+    },
+    {
+      "level": "H2",
+      "text": "3.1 Business Outcomes ",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "AFM7 Work and share information with other team members using effective communication ",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "styles and channels. ",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "3.2 Content ",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "early and frequent feedback. ",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "business representatives. ",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "adds value in each of these activities. ",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "driven development, and behavior-driven development. ",
+      "page": 11
+    },
+    {
+      "level": "H2",
+      "text": "cases. ",
+      "page": 11
+    },
+    {
+      "level": "H1",
+      "text": "4. References ",
+      "page": 12
+    },
+    {
+      "level": "H2",
+      "text": "4.1 Trademarks ",
+      "page": 12
+    },
+    {
+      "level": "H2",
+      "text": "The following registered trademarks and service marks are used in this document: ",
+      "page": 12
+    },
+    {
+      "level": "H2",
+      "text": "ISTQB\u00ae ",
+      "page": 12
+    },
+    {
+      "level": "H2",
+      "text": "4.2 Documents and Web Sites ",
+      "page": 12
+    },
+    {
+      "level": "H2",
+      "text": "Identifier Reference ",
+      "page": 12
+    },
+    {
+      "level": "H2",
+      "text": "to this website for the latest ISTQB Glossary and Syllabi. (www.istqb.org) ",
+      "page": 12
+    }
+  ]
+}
