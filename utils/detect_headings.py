@@ -4,6 +4,7 @@ from scipy.spatial.distance import cosine
 import os
 import pickle
 import numpy as np
+from langdetect import detect
 
 # Load lightweight spaCy model
 nlp = spacy.load("en_core_web_sm")
@@ -18,7 +19,7 @@ else:
     clf = None
     label_map = None
 
-def extract_features(elements):
+def extract_features(elements, lang='en'):
     features = []
     for i, el in enumerate(elements):
         text = el['text']
@@ -26,7 +27,10 @@ def extract_features(elements):
         is_bold = el.get('is_bold', 0)
         is_italic = el.get('is_italic', 0)
         text_len = len(text)
-        cap_ratio = sum(1 for c in text if c.isupper()) / (len(text) or 1)
+        if lang in ['ja', 'hi']:
+            cap_ratio = 0.0
+        else:
+            cap_ratio = sum(1 for c in text if c.isupper()) / (len(text) or 1)
         whitespace_above = el.get('whitespace_above', 0)
         y_pos = el.get('top', 0)
         y_pct = y_pos / (el.get('page_height', 1) or 1)
@@ -38,9 +42,20 @@ def extract_features(elements):
         ])
     return np.array(features)
 
+def detect_language(elements):
+    # Use langdetect on the first 10 lines with text
+    texts = [el['text'] for el in elements if el['text'].strip()]
+    sample = ' '.join(texts[:10])
+    try:
+        lang = detect(sample)
+    except Exception:
+        lang = 'en'
+    return lang
+
 def detect_heading_structure(elements):
     headings = []
     seen = set()
+    lang = detect_language(elements)
 
     texts = [el["text"].strip() for el in elements if el["text"].strip()]
     docs = [nlp(text) for text in texts]
@@ -51,7 +66,7 @@ def detect_heading_structure(elements):
     ml_preds = None
     ml_probs = None
     if clf is not None:
-        feats = extract_features(elements)
+        feats = extract_features(elements, lang)
         ml_pred_idx = clf.predict(feats)
         ml_preds = [label_map.get(idx, 'O') for idx in ml_pred_idx]
         probas = clf.predict_proba(feats)
@@ -67,8 +82,13 @@ def detect_heading_structure(elements):
         if not text or text in seen:
             continue
         word_count = len(text.split())
-        if word_count < 2 or word_count > 12:
-            continue
+        if lang in ['ja', 'hi']:
+            # Japanese/Hindi: skip capitalization, allow shorter/longer headings
+            if word_count < 1 or word_count > 20:
+                continue
+        else:
+            if word_count < 2 or word_count > 12:
+                continue
         if text[0] in {"-", "•", "—", "|"} or re.search(r"\.{5,}", text):
             continue
         if font_size not in font_sizes:
@@ -100,4 +120,4 @@ def detect_heading_structure(elements):
             "top": top
         })
         seen.add(text)
-    return headings
+    return {"language": lang, "headings": headings}
