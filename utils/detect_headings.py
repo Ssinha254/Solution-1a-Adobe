@@ -23,12 +23,12 @@ def extract_features(elements):
     for i, el in enumerate(elements):
         text = el['text']
         font_size = el.get('font_size', 12.0)
-        is_bold = 0  # Placeholder
-        is_italic = 0  # Placeholder
+        is_bold = el.get('is_bold', 0)
+        is_italic = el.get('is_italic', 0)
         text_len = len(text)
         cap_ratio = sum(1 for c in text if c.isupper()) / (len(text) or 1)
-        whitespace_above = 0  # Placeholder
-        y_pos = el.get('y', 0)
+        whitespace_above = el.get('whitespace_above', 0)
+        y_pos = el.get('top', 0)
         y_pct = y_pos / (el.get('page_height', 1) or 1)
         num_pattern = 0
         if any([text.strip().startswith(p) for p in ['1.', '1.1', '1.1.1', 'I.', 'A.']]):
@@ -49,16 +49,21 @@ def detect_heading_structure(elements):
 
     # ML prediction if model is available
     ml_preds = None
+    ml_probs = None
     if clf is not None:
         feats = extract_features(elements)
         ml_pred_idx = clf.predict(feats)
         ml_preds = [label_map.get(idx, 'O') for idx in ml_pred_idx]
+        probas = clf.predict_proba(feats)
+        ml_probs = [float(np.max(p)) for p in probas]
     else:
         ml_preds = ['O'] * len(elements)
+        ml_probs = [1.0] * len(elements)
 
     for idx, el in enumerate(elements):
         text = el["text"].strip()
         font_size = round(el["font_size"], 1)
+        top = el.get("top", 0)
         if not text or text in seen:
             continue
         word_count = len(text.split())
@@ -84,12 +89,15 @@ def detect_heading_structure(elements):
             level = "H2"
         # ML adjustment
         ml_level = ml_preds[idx]
+        confidence = ml_probs[idx] if ml_level != 'O' else 1.0
         if ml_level != 'O':
             level = ml_level
         headings.append({
             "level": level,
             "text": text if text.endswith(" ") else text + " ",
-            "page": el["page"]
+            "page": el["page"],
+            "confidence": confidence,
+            "top": top
         })
         seen.add(text)
     return headings
