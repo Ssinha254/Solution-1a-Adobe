@@ -1,0 +1,2 @@
+# This file ensures the data/gold directory is tracked by git
+# Place manually labeled gold JSON files here 

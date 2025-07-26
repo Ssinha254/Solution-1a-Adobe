@@ -126,3 +126,44 @@ Each output JSON contains:
 
 ## Contact / Support
 For questions or issues, please contact the repository maintainer or open an issue.
+
+---
+
+## Final Checklist for Submission
+
+Before submitting your solution, ensure all the following items are completed:
+
+### ✅ Required Files and Directories
+- [ ] `models/heading_classifier.pkl` is present and <200MB
+- [ ] All required directories exist: `data/raw/`, `data/gold/`, `data/weak/`, `data/splits/`, `models/`, `input/`, `output/`
+- [ ] `.gitkeep` files are present in empty directories
+
+### ✅ Core Scripts
+- [ ] `process_pdfs.py` - Main inference script
+- [ ] `src/r1a/infer.py` - Alternative inference script with model loading
+- [ ] `src/r1a/evaluate.py` - Evaluation script
+- [ ] `src/r1a/train_heading_classifier.py` - Training script
+- [ ] `scripts/judge_sim_r1a.sh` - Judge simulation script
+- [ ] `scripts/validate_constraints.sh` - Constraint validation script
+
+### ✅ Validation Tests
+- [ ] Run `bash scripts/validate_constraints.sh` - All constraints pass
+- [ ] Runtime verified ≤10 seconds per PDF
+- [ ] Model size verified <200MB
+- [ ] Inference works: `python process_pdfs.py` → `output/*.json`
+- [ ] Evaluation works: `python src/r1a/evaluate.py --pred output/sample.json --gold data/gold/sample.json`
+
+### ✅ Documentation
+- [ ] `README.md` is complete and accurate
+- [ ] `notebooks/error_analysis.ipynb` contains analysis code
+- [ ] All commands in README match actual scripts
+
+### ✅ Docker and Deployment
+- [ ] `Dockerfile` builds successfully
+- [ ] Judge simulation script runs without errors
+- [ ] CPU-only, no internet access required during inference
+
+Run the validation script to automatically check most requirements:
+```bash
+bash scripts/validate_constraints.sh
+```
