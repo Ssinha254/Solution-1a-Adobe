@@ -111,7 +111,7 @@ Each output JSON contains:
 
 ## Requirements
 - Python 3.10+
-- See `requirements.txt` for all dependencies (pdfplumber, spacy[small], scipy, numpy, pandas, lightgbm, langdetect, polyglot, etc.)
+- See `requirements.txt` for all dependencies (pdfplumber, spacy[small], scipy, numpy, pandas, lightgbm, langdetect etc.)
 - For Docker: `docker` (CPU-only, no internet required after build)
 
 ---
